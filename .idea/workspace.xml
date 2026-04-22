@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d014f3a4-2137-478e-b82d-526ea8371fd8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/PM.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PM.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projectmoon_fandom/fandom/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/projectmoon_fandom/fandom/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projectmoon_fandom/projectmoon_fandom/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/projectmoon_fandom/projectmoon_fandom/urls.py" afterDir="false" />
-    </list>
+    <list default="true" id="d014f3a4-2137-478e-b82d-526ea8371fd8" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

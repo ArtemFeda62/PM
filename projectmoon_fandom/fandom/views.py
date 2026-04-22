@@ -1,33 +1,43 @@
 from django.shortcuts import render, get_object_or_404, redirect
-
-from projectmoon_fandom.fandom.forms import AnomaliesForm
-from projectmoon_fandom.fandom.models import Anomalies, EGO, MediaFiles
+from django.contrib import messages
+from .forms import AnomaliesForm
+from .models import Anomalies, EGO, MediaFiles
 
 
 def create_anomalie(request):
     if request.method == "POST":
         form = AnomaliesForm(request.POST, request.FILES)
         if form.is_valid():
-            anomalie = Anomalies.object.create(
+            anomalie = Anomalies.objects.create(
                 name=form.cleaned_data['name'],
                 code=form.cleaned_data['code'],
                 risk_level=form.cleaned_data['risk_level'],
                 description=form.cleaned_data['description'],
             )
 
-        if form.cleaned_data['ego_name'] and form.cleaned_data['ego_slot']:
-            EGO.object.create(
-                anomalie = anomalie,
-                name = form.cleaned_data['ego_name'],
-                slot = form.cleaned_data['ego_slot'],
-                effect = form.cleaned_data['ego_effect']
-            )
-        if form.cleaned_data['image']:
-            MediaFiles.object.create(
-                anomalie = anomalie,
-                title = form.cleaned_data['tittle'],
-                file = form.cleaned_data['image']
-            )
+            if form.cleaned_data.get('ego_name') and form.cleaned_data.get('ego_slot'):
+                EGO.objects.create(
+                    anomalie=anomalie,
+                    name=form.cleaned_data['ego_name'],
+                    slot=form.cleaned_data['ego_slot'],
+                    effect=form.cleaned_data.get('ego_effect', '')
+                )
+
+            if form.cleaned_data.get('image'):
+                MediaFiles.objects.create(
+                    anomalie=anomalie,
+                    title=form.cleaned_data.get('title', ''),
+                    file=form.cleaned_data['image']
+                )
+
+            messages.success(request, f'Аномалия "{anomalie.name}" успешно создана.')
+            return redirect('anomalie_detail', pk=anomalie.pk)
+        else:
+            messages.error(request, 'Ошибка при создании аномалии. Проверьте введённые данные.')
+    else:
+        form = AnomaliesForm()
+
+    return render(request, 'fandom/create.html', {'form': form})
 
 
 def anomalie_edit(request, pk):
@@ -43,7 +53,7 @@ def anomalie_edit(request, pk):
             anomalie.save()
 
             anomalie.ego_gifts.all().delete()
-            if form.cleaned_data['ego_name'] and form.cleaned_data['ego_slot']:
+            if form.cleaned_data.get('ego_name') and form.cleaned_data.get('ego_slot'):
                 EGO.objects.create(
                     anomalie=anomalie,
                     name=form.cleaned_data['ego_name'],
@@ -51,14 +61,20 @@ def anomalie_edit(request, pk):
                     effect=form.cleaned_data.get('ego_effect', '')
                 )
 
-            if form.cleaned_data['media_file']:
+
+            if form.cleaned_data.get('media_file'):
                 MediaFiles.objects.create(
                     anomalie=anomalie,
                     title=form.cleaned_data.get('media_title', ''),
                     file=form.cleaned_data['media_file']
                 )
+
+            messages.success(request, f'Аномалия "{anomalie.name}" успешно обновлена.')
             return redirect('anomalie_detail', pk=anomalie.pk)
+        else:
+            messages.error(request, 'Ошибка при редактировании. Проверьте форму.')
     else:
+
         initial_data = {
             'name': anomalie.name,
             'code': anomalie.code,
@@ -74,12 +90,15 @@ def anomalie_edit(request, pk):
 
     return render(request, 'fandom/edit.html', {'form': form, 'anomalie': anomalie})
 
+
 def anomalie_delete(request, pk):
     anomalie = get_object_or_404(Anomalies, pk=pk)
     anomalie.removed = True
     anomalie.save()
+    messages.success(request, f'Аномалия "{anomalie.name}" помечена как удалённая.')
     return redirect('anomalie_list')
+
 
 def anomalie_list(request):
     anomalies = Anomalies.objects.filter(removed=False)
-    return render(request, 'fandom/list.html')
+    return render(request, 'fandom/list.html', {'anomalies': anomalies})
