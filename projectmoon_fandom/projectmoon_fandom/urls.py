@@ -22,5 +22,5 @@ from projectmoon_fandom.projectmoon_fandom import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('abnormalities/', include('fandom.urls')),
+    path('anomalies/', include('fandom.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
