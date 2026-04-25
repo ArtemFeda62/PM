@@ -4,7 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d014f3a4-2137-478e-b82d-526ea8371fd8" name="Changes" comment="" />
+    <list default="true" id="d014f3a4-2137-478e-b82d-526ea8371fd8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/projectmoon_fandom/fandom/templates/fandom/base.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projectmoon_fandom/fandom/templates/fandom/confirm_delete.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projectmoon_fandom/fandom/templates/fandom/create.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projectmoon_fandom/fandom/templates/fandom/detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projectmoon_fandom/fandom/templates/fandom/edit.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projectmoon_fandom/fandom/templates/fandom/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectmoon_fandom/fandom/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/projectmoon_fandom/fandom/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectmoon_fandom/fandom/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/projectmoon_fandom/fandom/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectmoon_fandom/fandom/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/projectmoon_fandom/fandom/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectmoon_fandom/fandom/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/projectmoon_fandom/fandom/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectmoon_fandom/projectmoon_fandom/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/projectmoon_fandom/projectmoon_fandom/urls.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,20 +37,23 @@
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="3CejtvwCBBIN2UeIiUeCf8mP7w8" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "D:/PM"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/PM&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>

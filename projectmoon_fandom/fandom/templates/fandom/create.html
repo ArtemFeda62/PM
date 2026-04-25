@@ -1,0 +1,29 @@
+{% extends 'fandom/base.html' %}
+
+{% block title %}Создание аномалии{% endblock %}
+
+{% block central_content %}
+    <h2>Новая аномалия</h2>
+    <form method="post" enctype="multipart/form-data" class="anomaly-form" id="main-form">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {% for field in form %}
+            <div class="form-group">
+                <label>{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    <div class="error-list">{{ field.errors }}</div>
+                {% endif %}
+                {% if field.help_text %}
+                    <small class="help-text">{{ field.help_text }}</small>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit" class="submit-btn">Сохранить</button>
+    </form>
+{% endblock %}
+
+{% block right_actions %}
+    <button type="submit" form="main-form" class="action-btn success-btn">Сохранить</button>
+    <a href="{% url 'fandom:anomalie_list' %}" class="action-btn cancel-btn">Отмена</a>
+{% endblock %}

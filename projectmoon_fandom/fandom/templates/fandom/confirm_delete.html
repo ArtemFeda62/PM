@@ -1,0 +1,20 @@
+{% extends 'fandom/base.html' %}
+
+{% block title %}Удаление аномалии{% endblock %}
+
+{% block central_content %}
+    <div class="delete-confirmation">
+        <div class="warning-icon">error</div>
+        <h2>Вы уверены, что хотите удалить "{{ anomalie.name }}"?</h2>
+        <p class="warning-text">Аномалия будет помечена как удалённая и исчезнет из публичных списков.</p>
+        <form method="post" class="delete-form">
+            {% csrf_token %}
+            <button type="submit" class="confirm-delete-btn">Да, удалить</button>
+            <a href="{% url 'fandom:anomalie_detail' anomalie.pk %}" class="cancel-delete-btn">Отмена</a>
+        </form>
+    </div>
+{% endblock %}
+
+{% block right_actions %}
+    <a href="{% url 'fandom:anomalie_detail' anomalie.pk %}" class="action-btn secondary-btn">Вернуться к аномалии</a>
+{% endblock %}

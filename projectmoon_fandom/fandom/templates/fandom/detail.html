@@ -1,0 +1,49 @@
+{% extends 'fandom/base.html' %}
+
+{% block title %}{{ anomalie.name }} — подробно{% endblock %}
+
+{% block central_content %}
+    <div class="detail-header">
+        <span class="risk-badge risk-{{ anomalie.risk_level|lower }}">{{ anomalie.risk_level }}</span>
+        <h1>{{ anomalie.name }} <small>({{ anomalie.code }})</small></h1>
+    </div>
+
+    <div class="description-block">
+        <h2>Описание</h2>
+        <p>{{ anomalie.description|linebreaks }}</p>
+    </div>
+
+    {% if anomalie.ego_gifts.all %}
+        <div class="ego-block">
+            <h2>Дар EGO</h2>
+            {% for ego in anomalie.ego_gifts.all %}
+                <div class="ego-card">
+                    <h3>{{ ego.name }} <span class="slot-badge">{{ ego.slot }}</span></h3>
+                    <p>{{ ego.effect|linebreaks }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if anomalie.images.all %}
+        <div class="images-block">
+            <h2>Изображения</h2>
+            <div class="image-gallery">
+                {% for img in anomalie.images.all %}
+                    <div class="gallery-item">
+                        <img src="{{ img.file.url }}" alt="{{ img.title }}">
+                        {% if img.title %}<span class="img-caption">{{ img.title }}</span>{% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block right_actions %}
+    <a href="{% url 'fandom:anomalie_edit' anomalie.pk %}" class="action-btn edit-btn">Редактировать</a>
+    <a href="{% url 'fandom:anomalie_delete' anomalie.pk %}" class="action-btn delete-btn">Удалить</a>
+    <a href="{% url 'fandom:create' %}" class="action-btn success-btn">Новая аномалия</a>
+    <hr class="separator">
+    <a href="{% url 'fandom:anomalie_list' %}" class="action-btn secondary-btn">К списку</a>
+{% endblock %}

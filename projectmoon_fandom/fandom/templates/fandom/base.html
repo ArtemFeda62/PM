@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Project Moon Fandom{% endblock %}</title>
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-flex">
+                <div class="logo-area">
+                    <h1>Библиотека Аномалий</h1>
+                    <p>Project Moon Fandom — справочник по существам и дарам EGO</p>
+                </div>
+                <div class="version-badge">Версия 1.0</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <div class="right_content">
+            <aside class="left-menu">
+                <h2>Навигация</h2>
+                <ul class="nav-list">
+                    <li><a href="{% url 'fandom:anomalie_list' %}" class="nav-link">Все аномалии</a></li>
+                    <li><a href="{% url 'fandom:create' %}" class="nav-link">Добавить новую</a></li>
+                    <li><a href="#" class="nav-link">О проекте</a></li>
+                </ul>
+            </aside>
+
+            <main class="main_content">
+                {% if messages %}
+                    <div class="messages">
+                        {% for message in messages %}
+                            <div class="alert {{ message.tags }}">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% block central_content %}
+                {% endblock %}
+            </main>
+
+            <aside class="left_content">
+                <h2>Действия</h2>
+                {% block right_actions %}
+                <a href="{% url 'fandom:anomalie_list' %}" class="action-btn">Назад к списку</a>
+                {% endblock %}
+            </aside>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p>© 2025 Project Moon Fandom. Данные основаны на вселенной Lobotomy Corporation.</p>
+    </footer>
+</body>
+</html>
