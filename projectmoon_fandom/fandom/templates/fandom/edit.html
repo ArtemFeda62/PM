@@ -1,28 +1,32 @@
 {% extends 'fandom/base.html' %}
 
-{% block title %}Редактирование: {{ anomalie.name }}{% endblock %}
+{% block title %}Редактирование {{ anomalie.name }}{% endblock %}
 
-{% block central_content %}
-    <h2>Редактирование "{{ anomalie.name }}"</h2>
-    <form method="post" enctype="multipart/form-data" class="anomaly-form" id="main-form">
-        {% csrf_token %}
-        {{ form.non_field_errors }}
-        {% for field in form %}
-            <div class="form-group">
-                <label>{{ field.label }}</label>
-                {{ field }}
-                {% if field.errors %}
-                    <div class="error-list">{{ field.errors }}</div>
-                {% endif %}
-            </div>
-        {% endfor %}
-        <button type="submit" class="submit-btn">Обновить</button>
-        <a href="{% url 'fandom:anomalie_detail' anomalie.pk %}" class="cancel-link">Отмена</a>
-    </form>
+{% block content %}
+<h2>Редактирование аномалии "{{ anomalie.name }}"</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset>
+        <legend>Основная информация</legend>
+        {{ form.as_p }}
+    </fieldset>
+    <fieldset>
+        <legend>Дар EGO</legend>
+        <p><label>Название EGO:</label> <input type="text" name="ego_name" value="{{ form.ego_name.value|default:'' }}" maxlength="100"></p>
+        <p><label>Слот:</label> <input type="text" name="ego_slot" value="{{ form.ego_slot.value|default:'' }}" maxlength="50"></p>
+        <p><label>Эффект:</label> <textarea name="ego_effect" rows="3" cols="40">{{ form.ego_effect.value|default:'' }}</textarea></p>
+    </fieldset>
+    <fieldset>
+        <legend>Изображение</legend>
+        <p><label>Название изображения:</label> <input type="text" name="image_title" value="{{ form.image_title.value|default:'' }}" maxlength="200"></p>
+        <p><label>Новый файл (если хотите заменить):</label> <input type="file" name="image_file"></p>
+        <p><small>Текущий файл: {% with img=anomalie.images.first %}{% if img %}<a href="{{ img.file.url }}">{{ img.title }}</a>{% else %}нет{% endif %}{% endwith %}</small></p>
+    </fieldset>
+    <button type="submit"> Сохранить изменения</button>
+</form>
 {% endblock %}
 
-{% block right_actions %}
-    <button type="submit" form="main-form" class="action-btn edit-btn">Сохранить изменения</button>
-    <a href="{% url 'fandom:anomalie_detail' anomalie.pk %}" class="action-btn secondary-btn">Вернуться к деталям</a>
-    <a href="{% url 'fandom:anomalie_delete' anomalie.pk %}" class="action-btn delete-btn">Удалить эту аномалию</a>
+{% block actions %}
+    <p><a href="{% url 'fandom:anomalie_detail' anomalie.id %}">Отмена</a></p>
+    <p><a href="{% url 'fandom:anomalie_delete' anomalie.id %}">Удалить эту аномалию</a></p>
 {% endblock %}

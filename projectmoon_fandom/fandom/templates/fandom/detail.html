@@ -1,49 +1,37 @@
 {% extends 'fandom/base.html' %}
 
-{% block title %}{{ anomalie.name }} — подробно{% endblock %}
+{% block title %}{{ anomalie.name }}{% endblock %}
 
-{% block central_content %}
-    <div class="detail-header">
-        <span class="risk-badge risk-{{ anomalie.risk_level|lower }}">{{ anomalie.risk_level }}</span>
-        <h1>{{ anomalie.name }} <small>({{ anomalie.code }})</small></h1>
-    </div>
+{% block content %}
+<h2>{{ anomalie.name }} <small>({{ anomalie.code }})</small></h2>
+<p><strong>Уровень риска:</strong> {{ anomalie.get_risk_level_display }}</p>
+<p><strong>Описание:</strong><br>{{ anomalie.description|linebreaks }}</p>
 
-    <div class="description-block">
-        <h2>Описание</h2>
-        <p>{{ anomalie.description|linebreaks }}</p>
-    </div>
-
-    {% if anomalie.ego_gifts.all %}
-        <div class="ego-block">
-            <h2>Дар EGO</h2>
-            {% for ego in anomalie.ego_gifts.all %}
-                <div class="ego-card">
-                    <h3>{{ ego.name }} <span class="slot-badge">{{ ego.slot }}</span></h3>
-                    <p>{{ ego.effect|linebreaks }}</p>
-                </div>
-            {% endfor %}
-        </div>
+<h3>Связанные данные</h3>
+<h4>Дар EGO</h4>
+{% with ego=anomalie.ego_gifts.first %}
+    {% if ego %}
+        <p><strong>Название:</strong> {{ ego.name }}<br>
+        <strong>Слот:</strong> {{ ego.slot }}<br>
+        <strong>Эффект:</strong> {{ ego.effect|linebreaks }}</p>
+    {% else %}
+        <p>Дар EGO не указан.</p>
     {% endif %}
+{% endwith %}
 
-    {% if anomalie.images.all %}
-        <div class="images-block">
-            <h2>Изображения</h2>
-            <div class="image-gallery">
-                {% for img in anomalie.images.all %}
-                    <div class="gallery-item">
-                        <img src="{{ img.file.url }}" alt="{{ img.title }}">
-                        {% if img.title %}<span class="img-caption">{{ img.title }}</span>{% endif %}
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
+<h4>Изображение</h4>
+{% with img=anomalie.images.first %}
+    {% if img %}
+        <p><strong>{{ img.title }}</strong><br>
+        <a href="{{ img.file.url }}" target="_blank">Посмотреть файл</a> (загружено {{ img.uploaded_at|date:"d.m.Y H:i" }})</p>
+    {% else %}
+        <p>Изображение отсутствует.</p>
     {% endif %}
+{% endwith %}
 {% endblock %}
 
-{% block right_actions %}
-    <a href="{% url 'fandom:anomalie_edit' anomalie.pk %}" class="action-btn edit-btn">Редактировать</a>
-    <a href="{% url 'fandom:anomalie_delete' anomalie.pk %}" class="action-btn delete-btn">Удалить</a>
-    <a href="{% url 'fandom:create' %}" class="action-btn success-btn">Новая аномалия</a>
-    <hr class="separator">
-    <a href="{% url 'fandom:anomalie_list' %}" class="action-btn secondary-btn">К списку</a>
+{% block actions %}
+    <p><a href="{% url 'fandom:anomalie_edit' anomalie.id %}"> Редактировать</a></p>
+    <p><a href="{% url 'fandom:anomalie_delete' anomalie.id %}"> Удалить</a></p>
+    <p><a href="{% url 'fandom:anomalie_list' %}"> Назад к списку</a></p>
 {% endblock %}

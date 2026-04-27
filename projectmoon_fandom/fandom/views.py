@@ -23,14 +23,15 @@ def create_anomalie(request):
             )
             if form.cleaned_data.get('ego_name') and form.cleaned_data.get('ego_slot'):
                 EGO.objects.create(
-                    anomalie=anomalie,
+                    anomaly=anomalie,
                     name=form.cleaned_data['ego_name'],
                     slot=form.cleaned_data['ego_slot'],
                     effect=form.cleaned_data.get('ego_effect', '')
                 )
+            # Создание изображения (если файл загружен)
             if form.cleaned_data.get('image_file'):
                 MediaFiles.objects.create(
-                    anomalie=anomalie,
+                    anomaly=anomalie,
                     title=form.cleaned_data.get('image_title', ''),
                     file=form.cleaned_data['image_file']
                 )
@@ -52,22 +53,26 @@ def anomalie_edit(request, pk):
             anomalie.risk_level = form.cleaned_data['risk_level']
             anomalie.description = form.cleaned_data['description']
             anomalie.save()
-            # Обновляем EGO – удаляем старый и создаём новый (если заполнено)
-            anomalie.ego_gifts.all().delete()
+
             if form.cleaned_data.get('ego_name') and form.cleaned_data.get('ego_slot'):
+                anomalie.ego_gifts.all().delete()
                 EGO.objects.create(
-                    anomalie=anomalie,
+                    anomaly=anomalie,
                     name=form.cleaned_data['ego_name'],
                     slot=form.cleaned_data['ego_slot'],
                     effect=form.cleaned_data.get('ego_effect', '')
                 )
+            else:
+                anomalie.ego_gifts.all().delete()
+
             if form.cleaned_data.get('image_file'):
                 anomalie.images.all().delete()
                 MediaFiles.objects.create(
-                    anomalie=anomalie,
+                    anomaly=anomalie,
                     title=form.cleaned_data.get('image_title', ''),
                     file=form.cleaned_data['image_file']
                 )
+
             messages.success(request, f'Аномалия "{anomalie.name}" успешно обновлена.')
             return redirect('fandom:anomalie_detail', pk=anomalie.pk)
         else:

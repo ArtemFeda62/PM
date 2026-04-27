@@ -2,32 +2,35 @@
 
 {% block title %}Список аномалий{% endblock %}
 
-{% block central_content %}
-    <h2>Все аномалии</h2>
-    {% if anomalies %}
-        <div class="anomalies-grid">
-            {% for anomaly in anomalies %}
-                <div class="anomaly-card">
-                    {% if anomaly.images.first %}
-                        <img src="{{ anomaly.images.first.file.url }}" alt="{{ anomaly.name }}" class="card-img">
-                    {% else %}
-                        <div class="no-image">Нет изображения</div>
-                    {% endif %}
-                    <div class="card-body">
-                        <h3>{{ anomaly.name }} <span class="risk-badge risk-{{ anomaly.risk_level|lower }}">{{ anomaly.risk_level }}</span></h3>
-                        <p class="code">Код: {{ anomaly.code }}</p>
-                        <p>{{ anomaly.description|truncatewords:20 }}</p>
-                        <a href="{% url 'fandom:anomalie_detail' anomaly.pk %}" class="detail-link">Подробнее →</a>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    {% else %}
-        <p class="empty-message">Аномалий не найдено. <a href="{% url 'fandom:create' %}">Добавьте первую</a>.</p>
-    {% endif %}
+{% block content %}
+<h2>Все аномалии</h2>
+{% if anomalies %}
+    <table border="1">
+        <thead>
+            <tr><th>ID</th><th>Название</th><th>Код</th><th>Уровень риска</th><th>Действия</th></tr>
+        </thead>
+        <tbody>
+        {% for a in anomalies %}
+            <tr>
+                <td>{{ a.id }}</td>
+                <td>{{ a.name }}</td>
+                <td>{{ a.code }}</td>
+                <td>{{ a.risk_level }}</td>
+                <td>
+                    <a href="{% url 'fandom:anomalie_detail' a.id %}">Подробнее</a> |
+                    <a href="{% url 'fandom:anomalie_edit' a.id %}">Изменить</a> |
+                    <a href="{% url 'fandom:anomalie_delete' a.id %}">Удалить</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>Аномалий не найдено.</p>
+{% endif %}
 {% endblock %}
 
-{% block right_actions %}
-    <a href="{% url 'fandom:create' %}" class="action-btn primary-btn">Создать аномалию</a>
-    <a href="{% url 'fandom:anomalie_list' %}" class="action-btn secondary-btn">Обновить список</a>
+{% block actions %}
+    <p><a href="{% url 'fandom:create' %}" style="display:inline-block; padding:5px 10px; background:#eee; text-decoration:none;"> Создать новую</a></p>
+    <p><em>Выберите запись в списке для редактирования или удаления.</em></p>
 {% endblock %}

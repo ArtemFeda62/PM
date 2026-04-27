@@ -2,28 +2,29 @@
 
 {% block title %}Создание аномалии{% endblock %}
 
-{% block central_content %}
-    <h2>Новая аномалия</h2>
-    <form method="post" enctype="multipart/form-data" class="anomaly-form" id="main-form">
-        {% csrf_token %}
-        {{ form.non_field_errors }}
-        {% for field in form %}
-            <div class="form-group">
-                <label>{{ field.label }}</label>
-                {{ field }}
-                {% if field.errors %}
-                    <div class="error-list">{{ field.errors }}</div>
-                {% endif %}
-                {% if field.help_text %}
-                    <small class="help-text">{{ field.help_text }}</small>
-                {% endif %}
-            </div>
-        {% endfor %}
-        <button type="submit" class="submit-btn">Сохранить</button>
-    </form>
+{% block content %}
+<h2>Создать новую аномалию</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset>
+        <legend>Основная информация</legend>
+        {{ form.as_p }}
+    </fieldset>
+    <fieldset>
+        <legend>Дар EGO (опционально)</legend>
+        <p><label>Название EGO:</label> <input type="text" name="ego_name" maxlength="100" id="id_ego_name"></p>
+        <p><label>Слот:</label> <input type="text" name="ego_slot" maxlength="50" id="id_ego_slot"></p>
+        <p><label>Эффект:</label> <textarea name="ego_effect" id="id_ego_effect" rows="3" cols="40"></textarea></p>
+    </fieldset>
+    <fieldset>
+        <legend>Изображение (опционально)</legend>
+        <p><label>Название изображения:</label> <input type="text" name="image_title" maxlength="200" id="id_image_title"></p>
+        <p><label>Файл:</label> <input type="file" name="image_file" id="id_image_file"></p>
+    </fieldset>
+    <button type="submit"> Сохранить</button>
+</form>
 {% endblock %}
 
-{% block right_actions %}
-    <button type="submit" form="main-form" class="action-btn success-btn">Сохранить</button>
-    <a href="{% url 'fandom:anomalie_list' %}" class="action-btn cancel-btn">Отмена</a>
+{% block actions %}
+    <p><a href="{% url 'fandom:anomalie_list' %}">Отмена</a></p>
 {% endblock %}

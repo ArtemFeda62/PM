@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: sans-serif;
+}
+
+.header {
+    padding: 1rem;
+    background: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+}
+
+.main-container {
+    display: flex;
+    flex: 1;
+}
+
+.left-sidebar {
+    width: 200px;
+    padding: 1rem;
+    background: #fafafa;
+    border-right: 1px solid #ddd;
+}
+
+.content {
+    flex: 1;
+    padding: 1rem;
+}
+
+.right-sidebar {
+    width: 200px;
+    padding: 1rem;
+    background: #fafafa;
+    border-left: 1px solid #ddd;
+}
+
+.footer {
+    padding: 0.5rem;
+    text-align: center;
+    background: #f0f0f0;
+    border-top: 1px solid #ccc;
+    font-size: 0.8rem;
+}
+
+table, th, td {
+    border-collapse: collapse;
+    border: 1px solid #aaa;
+}
+th, td {
+    padding: 0.3rem 0.6rem;
+    text-align: left;
+}
+
+form div {
+    margin-bottom: 0.5rem;
+}
+label {
+    display: inline-block;
+    width: 120px;
+}
+input, textarea, select {
+    min-width: 200px;
+}
+button, input[type="submit"] {
+    padding: 0.2rem 0.5rem;
+}
+
+.right-sidebar a {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}

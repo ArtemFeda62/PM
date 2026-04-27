@@ -1,58 +1,40 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Project Moon Fandom{% endblock %}</title>
-    {% block extra_head %}{% endblock %}
+    <title>{% block title %}Fandom: Аномалии{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'fandom/css/style.css' %}">
 </head>
 <body>
-    <header class="site-header">
-        <div class="container">
-            <div class="header-flex">
-                <div class="logo-area">
-                    <h1>Библиотека Аномалий</h1>
-                    <p>Project Moon Fandom — справочник по существам и дарам EGO</p>
-                </div>
-                <div class="version-badge">Версия 1.0</div>
-            </div>
-        </div>
-    </header>
+    <div class="header">
+        <h1> Библиотека Аномалий</h1>
+        <p>Информационная система по аномалиям из мира Lobotomy Corporation</p>
+    </div>
 
     <div class="main-container">
-        <div class="right_content">
-            <aside class="left-menu">
-                <h2>Навигация</h2>
-                <ul class="nav-list">
-                    <li><a href="{% url 'fandom:anomalie_list' %}" class="nav-link">Все аномалии</a></li>
-                    <li><a href="{% url 'fandom:create' %}" class="nav-link">Добавить новую</a></li>
-                    <li><a href="#" class="nav-link">О проекте</a></li>
-                </ul>
-            </aside>
+        <div class="left-sidebar">
+            <h3>Навигация</h3>
+            <ul>
+                <li><a href="{% url 'fandom:anomalie_list' %}"> Список аномалий</a></li>
+                <li><a href="{% url 'fandom:create' %}"> Создать новую</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+        </div>
 
-            <main class="main_content">
-                {% if messages %}
-                    <div class="messages">
-                        {% for message in messages %}
-                            <div class="alert {{ message.tags }}">{{ message }}</div>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-                {% block central_content %}
-                {% endblock %}
-            </main>
-
-            <aside class="left_content">
-                <h2>Действия</h2>
-                {% block right_actions %}
-                <a href="{% url 'fandom:anomalie_list' %}" class="action-btn">Назад к списку</a>
-                {% endblock %}
-            </aside>
+        <div class="right-sidebar">
+            <h3>Действия</h3>
+            {% block actions %}
+            <p>Доступные операции будут показаны здесь.</p>
+            {% endblock %}
         </div>
     </div>
 
-    <footer class="site-footer">
-        <p>© 2025 Project Moon Fandom. Данные основаны на вселенной Lobotomy Corporation.</p>
-    </footer>
+    <div class="footer">
+        <p>Проект Fandom | Аномалии, дары EGO, изображения</p>
+    </div>
 </body>
 </html>
