@@ -5,6 +5,7 @@
 }
 
 body {
+    margin: 0;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -12,9 +13,10 @@ body {
 }
 
 .header {
+    height: 150px;
+    background: url('/static/fandom/img/fon_header.png') no-repeat center center;
+    background-size: cover;
     padding: 1rem;
-    background: #f0f0f0;
-    border-bottom: 1px solid #ccc;
 }
 
 .main-container {
@@ -25,20 +27,23 @@ body {
 .left-sidebar {
     width: 200px;
     padding: 1rem;
-    background: #fafafa;
-    border-right: 1px solid #ddd;
+    background: url('/static/fandom/img/fon_left.png') no-repeat center center;
+    background-size: cover;
+    background-color: #fafafa;
 }
 
 .content {
     flex: 1;
     padding: 1rem;
+    border: 3px solid #696969;
 }
 
 .right-sidebar {
     width: 200px;
     padding: 1rem;
-    background: #fafafa;
-    border-left: 1px solid #ddd;
+    background: url('/static/fandom/img/fon_right.png') no-repeat center center;
+    background-size: cover;
+    background-color: #fafafa;
 }
 
 .footer {

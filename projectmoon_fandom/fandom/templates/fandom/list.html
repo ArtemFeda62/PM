@@ -26,11 +26,11 @@
         </tbody>
     </table>
 {% else %}
-    <p>Аномалий не найдено.</p>
+    <p class="text">Аномалий не найдено.</p>
 {% endif %}
 {% endblock %}
 
 {% block actions %}
-    <p><a href="{% url 'fandom:create' %}" style="display:inline-block; padding:5px 10px; background:#eee; text-decoration:none;"> Создать новую</a></p>
-    <p><em>Выберите запись в списке для редактирования или удаления.</em></p>
+    <p class="text"><a href="{% url 'fandom:create' %}"> Создать новую</a></p>
+    <p class="text"><em>Выберите запись в списке для редактирования или удаления.</em></p>
 {% endblock %}

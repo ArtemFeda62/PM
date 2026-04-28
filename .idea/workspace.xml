@@ -5,18 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d014f3a4-2137-478e-b82d-526ea8371fd8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/projectmoon_fandom/fandom/static/fandom/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projectmoon_fandom/fandom/static/fandom/img/fon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projectmoon_fandom/fandom/static/fandom/img/fon_header.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projectmoon_fandom/fandom/static/fandom/img/fon_left.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projectmoon_fandom/fandom/static/fandom/img/fon_right.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projectmoon_fandom/fandom/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projectmoon_fandom/fandom/migrations/0002_anomalies_removed.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projectmoon_fandom/fandom/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/projectmoon_fandom/fandom/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectmoon_fandom/fandom/static/fandom/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/projectmoon_fandom/fandom/static/fandom/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projectmoon_fandom/fandom/templates/fandom/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/projectmoon_fandom/fandom/templates/fandom/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projectmoon_fandom/fandom/templates/fandom/confirm_delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/projectmoon_fandom/fandom/templates/fandom/confirm_delete.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projectmoon_fandom/fandom/templates/fandom/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/projectmoon_fandom/fandom/templates/fandom/create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projectmoon_fandom/fandom/templates/fandom/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/projectmoon_fandom/fandom/templates/fandom/detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projectmoon_fandom/fandom/templates/fandom/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/projectmoon_fandom/fandom/templates/fandom/edit.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projectmoon_fandom/fandom/templates/fandom/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/projectmoon_fandom/fandom/templates/fandom/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projectmoon_fandom/fandom/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/projectmoon_fandom/fandom/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,13 +47,21 @@
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/PM&quot;
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/79082/PycharmProjects/PM/projectmoon_fandom/fandom/static/fandom/img&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\79082\PycharmProjects\PM\projectmoon_fandom\fandom\static\fandom\img" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\79082\PycharmProjects\PM\projectmoon_fandom\fandom\static\fandom\img" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-4762d8aabb82-6d6dccd035ac-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.30387.173" />
+        <option value="bundled-python-sdk-e0ed3721d81e-36ea0e71a18c-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.25410.159" />
       </set>
     </attachedChunks>
   </component>
