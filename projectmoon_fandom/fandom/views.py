@@ -76,7 +76,7 @@ def anomalie_edit(request, pk):
             messages.success(request, f'Аномалия "{anomalie.name}" успешно обновлена.')
             return redirect('fandom:anomalie_detail', pk=anomalie.pk)
         else:
-            messages.error(request, 'Ошибка при редактировании. Проверьте форму.')
+            messages.error(request, 'Ошибка редактированиия. Проверьте форму.')
     else:
         initial_data = {
             'name': anomalie.name,
