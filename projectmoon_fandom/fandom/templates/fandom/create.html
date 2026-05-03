@@ -17,7 +17,7 @@
         <p><label>Эффект:</label> <textarea name="ego_effect" id="id_ego_effect" rows="3" cols="40"></textarea></p>
     </fieldset>
     <fieldset>
-        <legend>Изображение (опционально)</legend>
+        <legend>Изображение</legend>
         <p><label>Название изображения:</label> <input type="text" name="image_title" maxlength="200" id="id_image_title"></p>
         <p><label>Файл:</label> <input type="file" name="image_file" id="id_image_file"></p>
     </fieldset>
@@ -26,5 +26,5 @@
 {% endblock %}
 
 {% block actions %}
-    <p><a href="{% url 'fandom:anomalie_list' %}">Отмена</a></p>
+    <p><a class = "_urls" href="{% url 'fandom:anomalie_list' %}">Отмена</a></p>
 {% endblock %}

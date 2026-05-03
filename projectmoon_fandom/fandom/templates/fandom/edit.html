@@ -27,6 +27,6 @@
 {% endblock %}
 
 {% block actions %}
-    <p><a href="{% url 'fandom:anomalie_detail' anomalie.id %}">Отмена</a></p>
-    <p><a href="{% url 'fandom:anomalie_delete' anomalie.id %}">Удалить эту аномалию</a></p>
+    <p><a class = "_urls" href="{% url 'fandom:anomalie_detail' anomalie.id %}">Отмена</a></p>
+    <p><a class = "_urls" href="{% url 'fandom:anomalie_delete' anomalie.id %}">Удалить эту аномалию</a></p>
 {% endblock %}

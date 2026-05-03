@@ -23,7 +23,7 @@
 {% with img=anomalie.images.first %}
     {% if img %}
         <p><strong>{{ img.title }}</strong><br>
-        <a href="{{ img.file.url }}" target="_blank">Посмотреть файл</a> (загружено {{ img.uploaded_at|date:"d.m.Y H:i" }})</p>
+        <a class = "_urls" href="{{ img.file.url }}" target="_blank">Посмотреть файл</a> (загружено {{ img.uploaded_at|date:"d.m.Y H:i" }})</p>
     {% else %}
         <p>Изображение отсутствует.</p>
     {% endif %}
@@ -31,7 +31,7 @@
 {% endblock %}
 
 {% block actions %}
-    <p><a href="{% url 'fandom:anomalie_edit' anomalie.id %}"> Редактировать</a></p>
-    <p><a href="{% url 'fandom:anomalie_delete' anomalie.id %}"> Удалить</a></p>
-    <p><a href="{% url 'fandom:anomalie_list' %}"> Назад к списку</a></p>
+    <p><a class = "_urls" href="{% url 'fandom:anomalie_edit' anomalie.id %}"> Редактировать</a></p>
+    <p><a class = "_urls" href="{% url 'fandom:anomalie_delete' anomalie.id %}"> Удалить</a></p>
+    <p><a class = "_urls" href="{% url 'fandom:anomalie_list' %}"> Назад к списку</a></p>
 {% endblock %}

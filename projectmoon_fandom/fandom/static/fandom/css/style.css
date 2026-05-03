@@ -35,6 +35,8 @@ body {
 .content {
     flex: 1;
     padding: 1rem;
+    background: url('/static/fandom/img/fon_main.png') no-repeat center center;
+    background-size: cover;
     border: 3px solid #696969;
 }
 
@@ -62,7 +64,9 @@ th, td {
     padding: 0.3rem 0.6rem;
     text-align: left;
 }
-
+div{
+color:white;
+}
 form div {
     margin-bottom: 0.5rem;
 }
@@ -76,8 +80,39 @@ input, textarea, select {
 button, input[type="submit"] {
     padding: 0.2rem 0.5rem;
 }
+ul{
+margin:2px;
+}
 
 .right-sidebar a {
     display: inline-block;
     margin-bottom: 0.5rem;
+}
+
+._urls {
+    background-color: white ;
+    border-radius: 2rem;
+    color: white;
+    -webkit-text-stroke: 1px #000000;
+    text-stroke: 1px #000000;
+    padding: 0.3rem 0.8rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: opacity 0.2s ease;
+    margin: 0.2rem;
+}
+
+
+._urls:hover {
+    opacity: 0.85;
+    text-decoration: none;
+}
+
+button{
+border-radius: 2rem;
+
+}
+input, textarea{
+border-radius: 2rem;
+opacity: 0.5;
 }

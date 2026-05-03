@@ -17,9 +17,9 @@
                 <td>{{ a.code }}</td>
                 <td>{{ a.risk_level }}</td>
                 <td>
-                    <a href="{% url 'fandom:anomalie_detail' a.id %}">Подробнее</a> |
-                    <a href="{% url 'fandom:anomalie_edit' a.id %}">Изменить</a> |
-                    <a href="{% url 'fandom:anomalie_delete' a.id %}">Удалить</a>
+                    <a class = "_urls" href="{% url 'fandom:anomalie_detail' a.id %}">Подробнее</a> |
+                    <a class = "_urls" href="{% url 'fandom:anomalie_edit' a.id %}">Изменить</a> |
+                    <a class = "_urls" href="{% url 'fandom:anomalie_delete' a.id %}">Удалить</a>
                 </td>
             </tr>
         {% endfor %}
@@ -31,6 +31,6 @@
 {% endblock %}
 
 {% block actions %}
-    <p class="text"><a href="{% url 'fandom:create' %}"> Создать новую</a></p>
+    <p class="text"><a class = "_urls" href="{% url 'fandom:create' %}"> Создать новую</a></p>
     <p class="text"><em>Выберите запись в списке для редактирования или удаления.</em></p>
 {% endblock %}

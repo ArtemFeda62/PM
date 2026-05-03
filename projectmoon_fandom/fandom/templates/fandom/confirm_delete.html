@@ -8,10 +8,10 @@
 <form method="post">
     {% csrf_token %}
     <button type="submit">Да, удалить</button>
-    <a href="{% url 'fandom:anomalie_list' %}">Отмена</a>
+    <a class = "_urls" href="{% url 'fandom:anomalie_list' %}">Отмена</a>
 </form>
 {% endblock %}
 
 {% block actions %}
-    <p><a href="{% url 'fandom:anomalie_detail' anomalie.id %}">Вернуться к деталям</a></p>
+    <p><a class = "_urls" href="{% url 'fandom:anomalie_detail' anomalie.id %}">Вернуться к деталям</a></p>
 {% endblock %}
