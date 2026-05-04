@@ -1,0 +1,75 @@
+document.addEventListener('DOMContentLoaded', function() {
+
+    const upButton = document.createElement('button');
+    upButton.innerText = '1';
+    upButton.id = 'scrollUpBtn';
+    upButton.title = 'Наверх';
+    document.body.appendChild(upButton);
+
+    window.addEventListener('scroll', function() {
+        upButton.style.display = window.scrollY > 250 ? 'block' : 'none';
+    });
+    upButton.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    const openModalBtn = document.getElementById('openModalBtn');
+    const modalOverlay = document.getElementById('modalOverlay');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+
+    if (openModalBtn && modalOverlay && closeModalBtn) {
+        openModalBtn.addEventListener('click', () => modalOverlay.style.display = 'flex');
+        closeModalBtn.addEventListener('click', () => modalOverlay.style.display = 'none');
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) modalOverlay.style.display = 'none';
+        });
+    }
+
+    function showSticker(text, duration = 3000) {
+        const sticker = document.createElement('div');
+        sticker.className = 'sticker';
+        sticker.innerText = text;
+        document.body.appendChild(sticker);
+        setTimeout(() => sticker.remove(), duration);
+    }
+
+    setTimeout(() => showSticker('Добро пожаловать! Используйте подсказки справа.'), 2000);
+
+    const slidePanel = document.getElementById('slideOutPanel');
+    if (slidePanel) {
+        slidePanel.addEventListener('click', (e) => {
+            if (e.target.id === 'closePanelLink') {
+                e.preventDefault();
+                slidePanel.classList.remove('open');
+            } else {
+                slidePanel.classList.toggle('open');
+            }
+        });
+        const panelContent = slidePanel.querySelector('.panel-content');
+        if (panelContent) panelContent.addEventListener('click', (e) => e.stopPropagation());
+    }
+
+    function validateAnomalyCode(input) {
+        const pattern = /^AN-\d{3}$/;
+        const val = input.value.trim();
+        if (val === '') return true;
+        if (!pattern.test(val)) {
+            showSticker('Неверный формат кода! Используйте AN-XXX (пример: AN-042)', 3000);
+            input.classList.add('error-input');
+            return false;
+        } else {
+            input.classList.remove('error-input');
+            return true;
+        }
+    }
+    const codeField = document.querySelector('#id_code');
+    if (codeField) {
+        codeField.addEventListener('blur', function() { validateAnomalyCode(this); });
+        codeField.addEventListener('input', function() { this.classList.remove('error-input'); });
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('created') === '1') showSticker('Аномалия успешно создана!', 4000);
+    if (params.get('updated') === '1') showSticker('Аномалия обновлена!', 4000);
+    if (params.get('deleted') === '1') showSticker('Аномалия удалена.', 4000);
+});

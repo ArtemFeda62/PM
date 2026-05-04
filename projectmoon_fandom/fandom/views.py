@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
+from django.urls import reverse
+
 from .forms import AnomaliesForm
 from .models import Anomalies, EGO, MediaFiles
 
@@ -36,7 +38,7 @@ def create_anomalie(request):
                     file=form.cleaned_data['image_file']
                 )
             messages.success(request, f'Аномалия "{anomalie.name}" успешно создана.')
-            return redirect('fandom:anomalie_detail', pk=anomalie.pk)
+            return redirect(reverse('fandom:anomalie_detail', args=[anomalie.pk]) + '?created=1')
         else:
             messages.error(request, 'Ошибка при создании аномалии. Проверьте введённые данные.')
     else:
@@ -74,7 +76,7 @@ def anomalie_edit(request, pk):
                 )
 
             messages.success(request, f'Аномалия "{anomalie.name}" успешно обновлена.')
-            return redirect('fandom:anomalie_detail', pk=anomalie.pk)
+            return redirect(reverse('fandom:anomalie_detail', args=[anomalie.pk]) + '?updated=1')
         else:
             messages.error(request, 'Ошибка редактированиия. Проверьте форму.')
     else:
@@ -103,5 +105,5 @@ def anomalie_delete(request, pk):
         anomalie.removed = True
         anomalie.save()
         messages.success(request, f'Аномалия "{anomalie.name}" помечена как удалённая.')
-        return redirect('fandom:anomalie_list')
+        return redirect(reverse('fandom:anomalie_list') + '?deleted=1')
     return render(request, 'fandom/confirm_delete.html', {'anomalie': anomalie})

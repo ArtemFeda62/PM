@@ -8,32 +8,57 @@
 </head>
 <body>
     <div class="header">
-
+        <button id="openModalBtn">?</button>
     </div>
 
     <div class="main-container">
         <div class="left-sidebar">
             <h3>Навигация</h3>
             <ul>
-                <li><a class = "_urls" href="{% url 'fandom:anomalie_list' %}"> Список аномалий</a></li>
-                <li><a class = "_urls" href="{% url 'fandom:create' %}"> Создать новую</a></li>
+                <li><a class="_urls" href="{% url 'fandom:anomalie_list' %}">Список аномалий</a></li>
+                <li><a class="_urls" href="{% url 'fandom:create' %}">Создать новую</a></li>
             </ul>
         </div>
         <div class="content">
-            {% block content %}
-            {% endblock %}
+            {% block content %}{% endblock %}
         </div>
-
         <div class="right-sidebar">
             <h3>Действия</h3>
-            {% block actions %}
-            <p>Доступные операции будут показаны здесь.</p>
-            {% endblock %}
+            {% block actions %}<p>Доступные операции будут показаны здесь.</p>{% endblock %}
         </div>
     </div>
 
     <div class="footer">
         <p>Проект Fandom | Аномалии, дары EGO, изображения</p>
     </div>
+    <div id="modalOverlay" class="modal-overlay">
+        <div class="modal-window">
+            <div class="modal-header">
+                <span class="modal-title"> Справка по аномалиям</span>
+                <button id="closeModalBtn" class="modal-close">*</button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Что такое аномалия?</strong> — Необъяснимое явление, объект или существо, обладающее особыми свойствами.</p>
+                <p><strong>Уровни риска:</strong> Критический, Высокий, Средний, Низкий.</p>
+                <p><strong>Дар EGO:</strong> Снаряжение, получаемое при изучении аномалии.</p>
+                <p><em>Для создания аномалии используйте форму в левом меню.</em></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="slideOutPanel" class="slide-out-panel">
+        <div class="panel-handle">Советы</div>
+        <div class="panel-content">
+            <h4>Быстрые советы</h4>
+            <ul>
+                <li>Код аномалии должен быть формата <strong>AN-XXX</strong> (где X — цифра).</li>
+                <li>Изображения загружайте в формате JPG/PNG.</li>
+                <li>Уровень риска влияет на цветовую маркировку.</li>
+            </ul>
+            <p><a href="#" id="closePanelLink">Скрыть панель</a></p>
+        </div>
+    </div>
+
+    <script src="{% static 'fandom/js/main.js' %}"></script>
 </body>
 </html>
