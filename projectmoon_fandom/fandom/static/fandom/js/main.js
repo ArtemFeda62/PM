@@ -64,10 +64,27 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     const codeField = document.querySelector('#id_code');
     if (codeField) {
-        codeField.addEventListener('blur', function() { validateAnomalyCode(this); });
-        codeField.addEventListener('input', function() { this.classList.remove('error-input'); });
-    }
+        codeField.addEventListener('blur', function() {
+            const isFormatValid = validateAnomalyCode(this);
+            const codeValue = this.value.trim();
 
+            if (isFormatValid && codeValue !== '') {
+                fetch(`/anomalies/check-code/?code=${codeValue}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.is_taken) {
+                            codeField.classList.add('error-input');
+                            showSticker('Ошибка: этот код аномалии уже занят!', 4000);
+                        }
+                    })
+                    .catch(error => console.error('Ошибка AJAX-запроса:', error));
+            }
+        });
+
+        codeField.addEventListener('input', function() {
+            this.classList.remove('error-input');
+        });
+    }
     const params = new URLSearchParams(window.location.search);
     if (params.get('created') === '1') showSticker('Аномалия успешно создана!', 4000);
     if (params.get('updated') === '1') showSticker('Аномалия обновлена!', 4000);

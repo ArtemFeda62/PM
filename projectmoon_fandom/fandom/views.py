@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.urls import reverse
+from django.http import JsonResponse
 
 from .forms import AnomaliesForm
 from .models import Anomalies, EGO, MediaFiles
@@ -107,3 +108,9 @@ def anomalie_delete(request, pk):
         messages.success(request, f'Аномалия "{anomalie.name}" помечена как удалённая.')
         return redirect(reverse('fandom:anomalie_list') + '?deleted=1')
     return render(request, 'fandom/confirm_delete.html', {'anomalie': anomalie})
+
+
+def check_code_uniqueness(request):
+    code = request.GET.get('code', None)
+    code_exists = Anomalies.objects.filter(code__iexact=code).exists()
+    return JsonResponse({'is_taken': code_exists})

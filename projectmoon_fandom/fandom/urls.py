@@ -9,4 +9,5 @@ urlpatterns = [
     path('create/', views.create_anomalie, name='create'),
     path('<int:pk>/edit/', views.anomalie_edit, name='anomalie_edit'),
     path('<int:pk>/delete/', views.anomalie_delete, name='anomalie_delete'),
+    path('check-code/', views.check_code_uniqueness, name='check_code_uniqueness'),
 ]
