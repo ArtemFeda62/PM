@@ -114,3 +114,16 @@ def check_code_uniqueness(request):
     code = request.GET.get('code', None)
     code_exists = Anomalies.objects.filter(code__iexact=code).exists()
     return JsonResponse({'is_taken': code_exists})
+
+
+def delete_anomaly_ajax(request, pk):
+    """Асинхронное мягкое удаление аномалии"""
+    # Находим аномалию по её первичному ключу (ID) или возвращаем 404, если её нет
+    anomaly = get_object_or_404(Anomalies, pk=pk)
+
+    # Вместо физического удаления ставим флаг в True (требование задания)
+    anomaly.removed = True
+    anomaly.save()  # Сохраняем изменения в базу данных
+
+    # Возвращаем успешный статус для JavaScript
+    return JsonResponse({'success': True})
