@@ -7,8 +7,8 @@
     <list default="true" id="d014f3a4-2137-478e-b82d-526ea8371fd8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projectmoon_fandom/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/projectmoon_fandom/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectmoon_fandom/fandom/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/projectmoon_fandom/fandom/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projectmoon_fandom/fandom/static/fandom/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/projectmoon_fandom/fandom/static/fandom/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projectmoon_fandom/fandom/templates/fandom/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/projectmoon_fandom/fandom/templates/fandom/list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projectmoon_fandom/fandom/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/projectmoon_fandom/fandom/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projectmoon_fandom/fandom/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/projectmoon_fandom/fandom/views.py" afterDir="false" />
     </list>
@@ -90,5 +90,15 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/projectmoon_fandom/fandom/urls.py</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

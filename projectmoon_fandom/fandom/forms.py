@@ -17,3 +17,10 @@ class AnomaliesForm(forms.ModelForm):
     class Meta:
         model = Anomalies
         fields = ['name', 'code', 'risk_level', 'description']
+
+
+    def clean_code(self):
+        code = self.cleaned_data.get('code')
+        if Anomalies.objects.filter(code__iexact=code).exists():
+            raise forms.ValidationError("Аномалия с таким кодом уже существует в базе данных!")
+        return code

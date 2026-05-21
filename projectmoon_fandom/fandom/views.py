@@ -14,6 +14,7 @@ def anomalie_detail(request, pk):
     anomalie = get_object_or_404(Anomalies, pk=pk, removed=False)
     return render(request, 'fandom/detail.html', {'anomalie': anomalie})
 
+
 def create_anomalie(request):
     if request.method == "POST":
         form = AnomaliesForm(request.POST, request.FILES)
@@ -31,7 +32,6 @@ def create_anomalie(request):
                     slot=form.cleaned_data['ego_slot'],
                     effect=form.cleaned_data.get('ego_effect', '')
                 )
-            # Создание изображения (если файл загружен)
             if form.cleaned_data.get('image_file'):
                 MediaFiles.objects.create(
                     anomaly=anomalie,
@@ -41,7 +41,7 @@ def create_anomalie(request):
             messages.success(request, f'Аномалия "{anomalie.name}" успешно создана.')
             return redirect(reverse('fandom:anomalie_detail', args=[anomalie.pk]) + '?created=1')
         else:
-            messages.error(request, 'Ошибка при создании аномалии. Проверьте введённые данные.')
+            pass
     else:
         form = AnomaliesForm()
     return render(request, 'fandom/create.html', {'form': form})
@@ -117,13 +117,7 @@ def check_code_uniqueness(request):
 
 
 def delete_anomaly_ajax(request, pk):
-    """Асинхронное мягкое удаление аномалии"""
-    # Находим аномалию по её первичному ключу (ID) или возвращаем 404, если её нет
     anomaly = get_object_or_404(Anomalies, pk=pk)
-
-    # Вместо физического удаления ставим флаг в True (требование задания)
     anomaly.removed = True
-    anomaly.save()  # Сохраняем изменения в базу данных
-
-    # Возвращаем успешный статус для JavaScript
+    anomaly.save()
     return JsonResponse({'success': True})

@@ -62,12 +62,12 @@ document.addEventListener('DOMContentLoaded', function() {
             return true;
         }
     }
+
     const codeField = document.querySelector('#id_code');
     if (codeField) {
         codeField.addEventListener('blur', function() {
             const isFormatValid = validateAnomalyCode(this);
             const codeValue = this.value.trim();
-
             if (isFormatValid && codeValue !== '') {
                 fetch(`/anomalies/check-code/?code=${codeValue}`)
                     .then(response => response.json())
@@ -85,30 +85,24 @@ document.addEventListener('DOMContentLoaded', function() {
             this.classList.remove('error-input');
         });
     }
-    const deleteButtons = document.querySelectorAll('.ajax-delete-btn');
+
+const deleteButtons = document.querySelectorAll('.ajax-delete-btn');
 
 deleteButtons.forEach(button => {
     button.addEventListener('click', function(event) {
-        // Отменяем стандартное поведение ссылки (чтобы страница не перезагружалась)
         event.preventDefault();
 
-        // Читаем ID аномалии из атрибута data-id
         const anomalyId = this.getAttribute('data-id');
 
         if (confirm('Вы уверены, что хотите удалить эту аномалию?')) {
-            // Отправляем скрытый запрос на сервер Django
             fetch(`/anomalies/${anomalyId}/delete-ajax/`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        // Находим строку таблицы по её уникальному ID
                         const rowToDelete = document.getElementById(`anomalie-row-${anomalyId}`);
                         if (rowToDelete) {
-                            // Эффектное динамическое изменение стиля (строка бледнеет перед удалением)
                             rowToDelete.style.transition = 'opacity 0.5s ease';
                             rowToDelete.style.opacity = '0';
-
-                            // Ждем 500 миллисекунд, пока анимация закончится, и удаляем из DOM
                             setTimeout(() => {
                                 rowToDelete.remove();
                                 showSticker('Аномалия успешно перемещена в архив (удалена)!', 3000);
