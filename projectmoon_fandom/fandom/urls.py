@@ -12,4 +12,5 @@ urlpatterns = [
 
     path('check-code/', views.check_code_uniqueness, name='check_code_uniqueness'),
     path('<int:pk>/delete-ajax/', views.delete_anomaly_ajax, name='delete_anomaly_ajax'),
+    path('slow-data/<int:anomaly_id>/', views.slow_anomaly_data, name='slow_data'),
 ]

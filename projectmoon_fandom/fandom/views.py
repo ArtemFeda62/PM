@@ -121,3 +121,21 @@ def delete_anomaly_ajax(request, pk):
     anomaly.removed = True
     anomaly.save()
     return JsonResponse({'success': True})
+
+import time
+from django.http import JsonResponse
+from .models import Anomalies
+
+def slow_anomaly_data(request, anomaly_id):
+    time.sleep(2)
+    try:
+        anomaly = Anomalies.objects.get(pk=anomaly_id, removed=False)
+        data = {
+            'id': anomaly.id,
+            'name': anomaly.name,
+            'code': anomaly.code,
+            'risk': anomaly.risk_level
+        }
+        return JsonResponse(data)
+    except Anomalies.DoesNotExist:
+        return JsonResponse({'error': 'Not found'}, status=404)
